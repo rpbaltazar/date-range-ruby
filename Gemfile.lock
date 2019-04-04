@@ -1,0 +1,22 @@
+PATH
+  remote: .
+  specs:
+    jiff-date_range (0.0.1alpha)
+
+GEM
+  remote: https://rubygems.org/
+  specs:
+    minitest (5.11.3)
+    rake (10.5.0)
+
+PLATFORMS
+  ruby
+
+DEPENDENCIES
+  bundler (~> 2.0)
+  jiff-date_range!
+  minitest (~> 5.0)
+  rake (~> 10.0)
+
+BUNDLED WITH
+   2.0.1

@@ -1,4 +1,4 @@
-$LOAD_PATH.unshift File.expand_path("../../lib", __FILE__)
-require "date_range"
+$LOAD_PATH.unshift File.expand_path('../../lib', __FILE__)
+require 'jiff/date_range'
 
-require "minitest/autorun"
+require 'minitest/autorun'
