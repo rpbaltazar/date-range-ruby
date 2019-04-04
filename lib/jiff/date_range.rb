@@ -22,7 +22,7 @@ module Jiff
         while current_date <= @end_date
           dates << current_date
           current_date = if current_date.month == 2
-                           dates.last(2).first >> 2
+                           dates[-2] >> 2
                          else
                            current_date >> 1
                          end
