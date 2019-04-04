@@ -14,21 +14,15 @@ module Jiff
     end
 
     def by_month
-      if date_is_end_of_month(@start_date)
-        month_ends_in_range
-      else
-        dates = []
-        current_date = @start_date
-        while current_date <= @end_date
-          dates << current_date
-          current_date = if current_date.month == 2
-                           dates[-2] >> 2
-                         else
-                           current_date >> 1
-                         end
-        end
-        dates
+      return month_ends_in_range if date_is_end_of_month(@start_date)
+
+      dates = []
+      current_date = @start_date
+      while current_date <= @end_date
+        dates << current_date
+        current_date = next_date(current_date, dates)
       end
+      dates
     end
 
     def to_a
@@ -47,10 +41,12 @@ module Jiff
       dates
     end
 
-    def next_date(current_date)
-      next_month = current_date.next_month.month
-      number_of_days = MonthMapper.days_in_month(next_month)
-      current_date + number_of_days
+    def next_date(current_date, dates)
+      if current_date.month == 2
+        dates[-2] >> 2
+      else
+        current_date >> 1
+      end
     end
 
     def date_range
