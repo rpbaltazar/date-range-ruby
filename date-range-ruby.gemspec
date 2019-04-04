@@ -1,11 +1,11 @@
 
 lib = File.expand_path("../lib", __FILE__)
 $LOAD_PATH.unshift(lib) unless $LOAD_PATH.include?(lib)
-require "date/range/ruby/version"
+require "date_range/version"
 
 Gem::Specification.new do |spec|
-  spec.name          = "date-range-ruby"
-  spec.version       = Date::Range::Ruby::VERSION
+  spec.name          = "date_range_ruby"
+  spec.version       = DateRange::VERSION
   spec.authors       = ["Rui Baltazar"]
   spec.email         = ["rui.p.baltazar@gmail.com"]
 
