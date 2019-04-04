@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    date_range_ruby (0.0.1alpha)
+    jiff-date_range (0.0.1alpha)
 
 GEM
   remote: https://rubygems.org/
@@ -14,7 +14,7 @@ PLATFORMS
 
 DEPENDENCIES
   bundler (~> 2.0)
-  date_range_ruby!
+  jiff-date_range!
   minitest (~> 5.0)
   rake (~> 10.0)
 
