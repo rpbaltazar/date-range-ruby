@@ -98,7 +98,7 @@ date_range.by_month # => [31/01/2019, 28/02/2019, 31/03/2019]
 ## Contributing
 
 Bug reports and pull requests are welcome on GitHub at
-https://github.com/rpbaltazar/date-range-ruby. This project is intended to be a
+https://github.com/rpbaltazar/jiff-date_range. This project is intended to be a
 safe, welcoming space for collaboration, and contributors are expected to adhere
 to the [Contributor Covenant](http://contributor-covenant.org) code of conduct.
 As you'll understand because this is used for a production use case, it might be
@@ -113,4 +113,4 @@ The gem is available as open source under the terms of the
 ## Code of Conduct
 
 Everyone interacting in the Jiff::DateRange project’s codebases, issue trackers,
-chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rpbaltazar/date-range-ruby/blob/master/CODE_OF_CONDUCT.md).
+chat rooms and mailing lists is expected to follow the [code of conduct](https://github.com/rpbaltazar/jiff-date_range/blob/master/CODE_OF_CONDUCT.md).

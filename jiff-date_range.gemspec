@@ -14,7 +14,7 @@ Gem::Specification.new do |spec|
                      'incomplete or rely on rails methods to work. This is '\
                      'intended to be used and work both in Ruby or Rails'
 
-  spec.homepage = 'https://github.com/rpbaltazar/date-range-ruby'
+  spec.homepage = 'https://github.com/rpbaltazar/jiff-date_range'
   spec.license = 'MIT'
 
   # Specify which files should be added to the gem when it is released.
