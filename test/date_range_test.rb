@@ -1,4 +1,5 @@
 require 'test_helper'
+require 'timecop'
 
 class Jiff::DateRangeTest < Minitest::Test
   def test_that_it_has_a_version_number
@@ -22,6 +23,17 @@ class Jiff::DateRangeTest < Minitest::Test
     expected_dates = [Date.parse('01/01/2019'), Date.parse('01/02/2019'),
                       Date.parse('01/03/2019')]
     assert_equal(expected_dates, date_range.by_month)
+  end
+
+  def test_by_month_first_date_in_feb
+    Timecop.freeze(Date.parse('06/04/2019')) do
+      d1 = Date.today - 60
+      d2 = Date.today
+      date_range = Jiff::DateRange.new(d1, d2)
+      expected_dates = [Date.parse('05/02/2019'), Date.parse('05/03/2019'),
+                        Date.parse('05/04/2019')]
+      assert_equal(expected_dates, date_range.by_month)
+    end
   end
 
   def test_by_month_with_february_end_of_month

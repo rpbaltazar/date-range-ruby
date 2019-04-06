@@ -42,7 +42,9 @@ module Jiff
     end
 
     def next_date(current_date, dates)
-      if current_date.month == 2
+      # NOTE: If first date is in february, then there is no problem
+      # in jumping forward.
+      if current_date.month == 2 && dates.length > 1
         dates[-2] >> 2
       else
         current_date >> 1
