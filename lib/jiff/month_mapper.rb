@@ -1,25 +1,13 @@
 module Jiff
+  # Simple mapper between month and number of days
   module MonthMapper
-    DAYS_MONTH = {
-      1 => 31,
-      2 => nil,
-      3 => 31,
-      4 => 30,
-      5 => 31,
-      6 => 30,
-      7 => 31,
-      8 => 31,
-      9 => 30,
-      10 => 31,
-      11 => 30,
-      12 => 31
-    }.freeze
+    DAYS_MONTH = [31, 28, 31, 30, 31, 30, 31, 31, 30, 31, 30, 31].freeze
 
-    def self.days_in_month(month, leap = false)
-      return DAYS_MONTH[month] unless month == 2
-      return 29 if leap
+    def self.days_in_month(date)
+      month = date.month
+      return 29 if month == 2 && Date.gregorian_leap?(date.year)
 
-      28
+      DAYS_MONTH[month - 1]
     end
   end
 end

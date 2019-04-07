@@ -4,6 +4,7 @@ require_relative 'date_range/version'
 require_relative 'month_mapper'
 
 module Jiff
+  # Implementation of date range relying in ruby dates (no rails helpers/add-ons)
   class DateRange
     attr_reader :start_date
     attr_reader :end_date
@@ -71,7 +72,7 @@ module Jiff
     end
 
     def date_is_end_of_month(date)
-      date.day == MonthMapper.days_in_month(date.month)
+      date.day == MonthMapper.days_in_month(date)
     end
   end
 end
