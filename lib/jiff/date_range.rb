@@ -29,6 +29,10 @@ module Jiff
       date_range.to_a
     end
 
+    def include?(date)
+      date >= @start_date && date <= @end_date
+    end
+
     private
 
     def days_grouped_by_month

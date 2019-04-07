@@ -62,4 +62,24 @@ class Jiff::DateRangeTest < Minitest::Test
                       Date.parse('31/03/2019'), Date.parse('30/04/2019')]
     assert_equal(expected_dates, date_range.by_month)
   end
+
+  def test_include?
+    d1 = Date.parse('01/01/2019')
+    d2 = Date.parse('28/02/2019')
+    date_range = Jiff::DateRange.new(d1, d2)
+    test_date = Date.parse('31/12/2018')
+    assert_equal(date_range.include?(test_date), false)
+
+    test_date = Date.parse('01/01/2019')
+    assert_equal(date_range.include?(test_date), true)
+
+    test_date = Date.parse('31/01/2019')
+    assert_equal(date_range.include?(test_date), true)
+
+    test_date = Date.parse('28/02/2019')
+    assert_equal(date_range.include?(test_date), true)
+
+    test_date = Date.parse('01/03/2019')
+    assert_equal(date_range.include?(test_date), false)
+  end
 end
