@@ -14,11 +14,11 @@ module Jiff
     end
 
     def by_month
-      return month_ends_in_range if date_is_end_of_month(@start_date)
+      return month_ends_in_range if date_is_end_of_month(start_date)
 
       dates = []
-      current_date = @start_date
-      while current_date <= @end_date
+      current_date = start_date
+      while current_date <= end_date
         dates << current_date
         current_date = next_date(current_date, dates)
       end
@@ -30,7 +30,18 @@ module Jiff
     end
 
     def include?(date)
-      date >= @start_date && date <= @end_date
+      if date.is_a?(Jiff::DateRange)
+        include?(date.start_date) || include?(date.end_date)
+      else
+        date >= start_date && date <= end_date
+      end
+    end
+
+    def overlap?(other_range)
+      # TODO: Probably should raise 'unsupported type'
+      return unless other_range.is_a? Jiff::DateRange
+
+      other_range.include?(start_date) || other_range.include?(end_date) || include?(other_range)
     end
 
     private
@@ -41,7 +52,7 @@ module Jiff
 
     def month_ends_in_range
       dates = days_grouped_by_month.values.map(&:last)
-      dates.pop unless date_is_end_of_month(@end_date)
+      dates.pop unless date_is_end_of_month(end_date)
       dates
     end
 
@@ -56,7 +67,7 @@ module Jiff
     end
 
     def date_range
-      (@start_date..@end_date)
+      (start_date..end_date)
     end
 
     def date_is_end_of_month(date)
