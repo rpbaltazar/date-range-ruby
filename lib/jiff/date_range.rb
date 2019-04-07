@@ -45,6 +45,14 @@ module Jiff
       other_range.include?(start_date) || other_range.include?(end_date) || include?(other_range)
     end
 
+    # NOTE: Thank you @chrismytton for the implementation suggestion
+    def overlap(other_range)
+      return unless overlap?(other_range)
+
+      dates = [start_date, end_date, other_range.start_date, other_range.end_date].sort[1, 2]
+      Jiff::DateRange.new(*dates)
+    end
+
     private
 
     def days_grouped_by_month
