@@ -1,7 +1,7 @@
 PATH
   remote: .
   specs:
-    jiff-date_range (0.0.1alpha)
+    jiff-date_range (0.0.1)
 
 GEM
   remote: https://rubygems.org/

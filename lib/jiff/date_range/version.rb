@@ -1,5 +1,5 @@
 module Jiff
   class DateRange
-    VERSION = '0.0.1alpha'
+    VERSION = '0.0.1'.freeze
   end
 end
