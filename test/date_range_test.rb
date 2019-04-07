@@ -123,4 +123,21 @@ class Jiff::DateRangeTest < Minitest::Test
     other_date_range = Jiff::DateRange.new(od1, od2)
     assert_equal(date_range_one.overlap?(other_date_range), false)
   end
+
+  def test_overlaping_range
+    d1 = Date.parse('05/01/2019')
+    d2 = Date.parse('03/05/2019')
+    date_range = Jiff::DateRange.new(d1, d2)
+    overlap = date_range_one.overlap(date_range)
+    assert_equal d1, overlap.start_date
+    assert_equal date_range_one.end_date, overlap.end_date
+  end
+
+  def test_overlaping_range_returns_nil_for_non_overlaps
+    d1 = Date.parse('31/01/2018')
+    d2 = Date.parse('03/05/2018')
+    date_range = Jiff::DateRange.new(d1, d2)
+    overlap = date_range_one.overlap(date_range)
+    assert_nil overlap
+  end
 end
