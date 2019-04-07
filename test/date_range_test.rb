@@ -82,4 +82,45 @@ class Jiff::DateRangeTest < Minitest::Test
     test_date = Date.parse('01/03/2019')
     assert_equal(date_range.include?(test_date), false)
   end
+
+  def date_range_one
+    d1 = Date.parse('01/01/2019')
+    d2 = Date.parse('28/02/2019')
+    Jiff::DateRange.new(d1, d2)
+  end
+
+  def test_it_does_not_overlap_left_side
+    od1 = Date.parse('30/11/2018')
+    od2 = Date.parse('31/12/2018')
+    other_date_range = Jiff::DateRange.new(od1, od2)
+    assert_equal(date_range_one.overlap?(other_date_range), false)
+  end
+
+  def test_it_overlaps_left_side_of_range
+    od1 = Date.parse('30/11/2018')
+    od2 = Date.parse('05/01/2019')
+    other_date_range = Jiff::DateRange.new(od1, od2)
+    assert_equal(date_range_one.overlap?(other_date_range), true)
+  end
+
+  def test_it_overlaps_all_range
+    od1 = Date.parse('30/11/2018')
+    od2 = Date.parse('03/03/2019')
+    other_date_range = Jiff::DateRange.new(od1, od2)
+    assert_equal(date_range_one.overlap?(other_date_range), true)
+  end
+
+  def test_it_overlaps_right_side_of_range
+    od1 = Date.parse('03/01/2019')
+    od2 = Date.parse('03/03/2019')
+    other_date_range = Jiff::DateRange.new(od1, od2)
+    assert_equal(date_range_one.overlap?(other_date_range), true)
+  end
+
+  def test_it_does_overlap_right_side
+    od1 = Date.parse('01/03/2019')
+    od2 = Date.parse('03/03/2019')
+    other_date_range = Jiff::DateRange.new(od1, od2)
+    assert_equal(date_range_one.overlap?(other_date_range), false)
+  end
 end
