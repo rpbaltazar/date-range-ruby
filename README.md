@@ -1,5 +1,7 @@
 # DateRange
 
+[![Build Status](https://travis-ci.com/rpbaltazar/jiff-date_range.svg?branch=master)](https://travis-ci.com/rpbaltazar/jiff-date_range)
+
 This gem came up from the need of using date ranges in our reporting tool
 and the lack of a gem that actually provided date ranges manipulations, such as
 building arrays of dates.
@@ -93,6 +95,57 @@ d1 = Date.parse('31/01/2019')
 d2 = Date.parse('29/04/2019')
 date_range = Jiff::DateRange.new(d1, d2)
 date_range.by_month # => [31/01/2019, 28/02/2019, 31/03/2019]
+```
+
+### include?
+
+As the name suggests, this method takes in a date or a Jiff::DateRange and
+checks wether the date range instance used includes the argument.
+
+```ruby
+d1 = Date.parse('31/01/2019')
+d2 = Date.parse('29/04/2019')
+date_range = Jiff::DateRange.new(d1, d2)
+d3 = Date.parse('01/02/2019')
+date_range.include?(d3) # => true
+
+d4 = Date.parse('28/05/2019')
+date_range.include?(d4) # => false
+
+other_date_range = Jiff::DateRange.new(d3, d4)
+date_range.include?(other_date_range) # => true
+```
+
+
+### overlap?
+
+Once again the method name suggests that this will test if two date ranges
+overlap
+
+```ruby
+d1 = Date.parse('31/01/2019')
+d2 = Date.parse('29/04/2019')
+date_range = Jiff::DateRange.new(d1, d2)
+
+d3 = Date.parse('01/02/2019')
+d4 = Date.parse('28/05/2019')
+other_date_range = Jiff::DateRange.new(d3, d4)
+date_range.overlap?(other_date_range) # => true
+```
+
+### overlap
+
+This method returns the overlapping date range if any, else it'll return nil
+
+```ruby
+d1 = Date.parse('31/01/2019')
+d2 = Date.parse('29/04/2019')
+date_range = Jiff::DateRange.new(d1, d2)
+
+d3 = Date.parse('01/02/2019')
+d4 = Date.parse('28/05/2019')
+other_date_range = Jiff::DateRange.new(d3, d4)
+date_range.overlap(other_date_range) # => start_date=2019-02-01, end_date=2019-04-29
 ```
 
 ## Contributing
